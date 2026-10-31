@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react"
 import Link from "next/link"
+import MobileNav from "@/components/mobile-nav"
 import { usePathname } from "next/navigation"
 import { ArrowLeft, Video, Activity, Home, BarChart2, Settings, Gamepad2 } from "lucide-react"
 import { Card } from "@/components/ui/card"
@@ -18,13 +19,13 @@ export default function LiveCCTVPage() {
 
   const videoFeedUrl = apiUrl(`/api/video-feed?tracking=${videoAI.trackingEnabled}&confidence=${videoAI.confidence}`)
   return (
-    <div className="flex h-screen bg-[#fef3c7] overflow-hidden font-mono text-black">
+    <div className="flex h-dvh bg-[#fef3c7] overflow-hidden font-mono text-black">
       
             {/* Sidebar มาตรฐานเดียวกันทุกหน้า */}
-      <aside className="w-64 bg-gray-900 flex flex-col py-8 px-4 gap-6 text-white shrink-0 border-r-4 border-black z-10 hidden md:flex">
+      <aside className="w-64 bg-gray-900 flex flex-col py-8 px-4 gap-6 text-white shrink-0 border-r-4 border-black z-10 hidden lg:flex">
         <div className="mb-8 px-2 flex items-center gap-3">
           <div className="w-10 h-10 bg-yellow-300 border-2 border-white rounded-none shadow-[2px_2px_0_0_#fff]"></div>
-          <h1 className="text-xl font-black tracking-widest uppercase">TRAFFIC<br/>LAB</h1>
+          <h1 className="text-xl font-black tracking-widest uppercase">TRAFFIC<br/>SYSTEM</h1>
         </div>
         
         <div className="flex flex-col gap-2 flex-1">
@@ -54,7 +55,8 @@ export default function LiveCCTVPage() {
       </aside>
 
       {/* Main Area */}
-      <main className="flex-1 p-8 overflow-y-auto relative bg-[linear-gradient(to_right,#0000000a_1px,transparent_1px),linear-gradient(to_bottom,#0000000a_1px,transparent_1px)] bg-[size:20px_20px] flex flex-col">
+      <main className="min-h-0 min-w-0 flex-1 p-4 sm:p-6 lg:p-8 overflow-y-auto relative bg-[linear-gradient(to_right,#0000000a_1px,transparent_1px),linear-gradient(to_bottom,#0000000a_1px,transparent_1px)] bg-[size:20px_20px] flex flex-col">
+        <MobileNav />
         
         {/* แถบด้านบน (Header) */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
@@ -86,7 +88,7 @@ export default function LiveCCTVPage() {
 
         {/* กรอบแสดงวิดีโอ (Retro TV Style) */}
         <Card className="flex-1 rounded-none border-4 border-black shadow-[8px_8px_0_0_rgba(0,0,0,1)] bg-gray-300 flex flex-col p-4 md:p-6">
-          <div className="w-full h-full bg-black border-8 border-gray-800 relative flex items-center justify-center shadow-inner overflow-hidden">
+          <div className="w-full h-full bg-black border-4 md:border-8 border-gray-800 relative flex items-center justify-center shadow-inner overflow-hidden">
             
             {/* ดึงภาพ Live Stream จาก FastAPI */}
             <img 
@@ -96,7 +98,7 @@ export default function LiveCCTVPage() {
             />
             
             {/* ป้ายกำกับสถานะ AI แบบ Pixel */}
-            <div className="absolute top-6 right-6 bg-green-400 text-black text-sm px-4 py-2 font-black uppercase border-4 border-black shadow-[4px_4px_0_0_#000] flex items-center gap-2 z-20">
+            <div className="absolute top-2 right-2 md:top-6 md:right-6 bg-green-400 text-black text-[10px] md:text-sm px-2 md:px-4 py-1 md:py-2 font-black uppercase border-2 md:border-4 border-black shadow-[4px_4px_0_0_#000] flex items-center gap-2 z-20">
                <Activity className="w-5 h-5" />
                {videoAI.trackingEnabled ? "YOLOv8 TRACKING" : "RAW VIDEO"}
             </div>

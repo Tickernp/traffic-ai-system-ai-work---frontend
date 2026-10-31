@@ -7,6 +7,7 @@ import { AreaChart, Area, PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tool
 import { toPng } from "html-to-image"
 import { jsPDF } from "jspdf"
 import Link from "next/link"
+import MobileNav from "@/components/mobile-nav"
 import { usePathname } from "next/navigation"
 import { loadTrafficSettings } from "@/lib/traffic-settings"
 import { apiUrl } from "@/lib/api"
@@ -78,12 +79,12 @@ export default function DashboardPage() {
   };
 
   return (
-    <div className="flex h-screen bg-[#fef3c7] overflow-hidden font-mono text-black">
+    <div className="flex h-dvh bg-[#fef3c7] overflow-hidden font-mono text-black">
       
       {/* Sidebar ดีไซน์เดิมตามเรฟ */}
-      <aside className="w-64 bg-gray-900 flex flex-col py-8 px-4 gap-6 text-white shrink-0 border-r-4 border-black z-10 hidden md:flex">
+      <aside className="w-64 bg-gray-900 flex flex-col py-8 px-4 gap-6 text-white shrink-0 border-r-4 border-black z-10 hidden lg:flex">
         <div className="mb-8 px-2 flex items-center gap-3">
-          <div className="w-10 h-10 bg-yellow-300 border-2 border-white rounded-none"></div>
+          <div className="w-10 h-10 bg-yellow-300 border-2 border-white rounded-none shadow-[2px_2px_0_0_#fff]"></div>
           <h1 className="text-xl font-black tracking-widest uppercase">TRAFFIC<br/>SYSTEM</h1>
         </div>
         
@@ -115,7 +116,8 @@ export default function DashboardPage() {
       </aside>
 
       {/* Main Area */}
-      <main id="dashboard-content" className="flex-1 p-8 overflow-y-auto relative bg-[linear-gradient(to_right,#0000000a_1px,transparent_1px),linear-gradient(to_bottom,#0000000a_1px,transparent_1px)] bg-[size:20px_20px] bg-[#fef3c7]">
+      <main id="dashboard-content" className="min-h-0 min-w-0 flex-1 p-4 sm:p-6 lg:p-8 overflow-y-auto relative bg-[linear-gradient(to_right,#0000000a_1px,transparent_1px),linear-gradient(to_bottom,#0000000a_1px,transparent_1px)] bg-[size:20px_20px] bg-[#fef3c7]">
+        <MobileNav />
         
         {/* Header & Search */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">

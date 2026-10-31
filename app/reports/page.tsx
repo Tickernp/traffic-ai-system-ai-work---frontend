@@ -5,6 +5,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Home, BarChart2, Settings, Video, Calendar, FileText, FileSpreadsheet, Gamepad2 } from "lucide-react"
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, ResponsiveContainer } from "recharts"
 import Link from "next/link"
+import MobileNav from "@/components/mobile-nav"
 import { usePathname } from "next/navigation"
 import { apiUrl } from "@/lib/api"
 
@@ -38,13 +39,13 @@ export default function ReportsPage() {
   }, [timeRange]);
 
   return (
-    <div className="flex h-screen bg-[#fef3c7] overflow-hidden font-mono text-black">
+    <div className="flex h-dvh bg-[#fef3c7] overflow-hidden font-mono text-black">
       
             {/* Sidebar มาตรฐานเดียวกันทุกหน้า */}
-      <aside className="w-64 bg-gray-900 flex flex-col py-8 px-4 gap-6 text-white shrink-0 border-r-4 border-black z-10 hidden md:flex">
+      <aside className="w-64 bg-gray-900 flex flex-col py-8 px-4 gap-6 text-white shrink-0 border-r-4 border-black z-10 hidden lg:flex">
         <div className="mb-8 px-2 flex items-center gap-3">
           <div className="w-10 h-10 bg-yellow-300 border-2 border-white rounded-none shadow-[2px_2px_0_0_#fff]"></div>
-          <h1 className="text-xl font-black tracking-widest uppercase">TRAFFIC<br/>LAB</h1>
+          <h1 className="text-xl font-black tracking-widest uppercase">TRAFFIC<br/>SYSTEM</h1>
         </div>
         
         <div className="flex flex-col gap-2 flex-1">
@@ -74,7 +75,8 @@ export default function ReportsPage() {
       </aside>
 
       {/* Main Area */}
-      <main id="dashboard-content" className="flex-1 p-8 overflow-y-auto relative bg-[linear-gradient(to_right,#0000000a_1px,transparent_1px),linear-gradient(to_bottom,#0000000a_1px,transparent_1px)] bg-[size:20px_20px]">
+      <main id="dashboard-content" className="min-h-0 min-w-0 flex-1 p-4 sm:p-6 lg:p-8 overflow-y-auto relative bg-[linear-gradient(to_right,#0000000a_1px,transparent_1px),linear-gradient(to_bottom,#0000000a_1px,transparent_1px)] bg-[size:20px_20px]">
+        <MobileNav />
         
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
           <div>
@@ -86,12 +88,12 @@ export default function ReportsPage() {
         </div>
 
         {/* เมนูเลือกดูข้อมูลย้อนหลัง */}
-        <div className="mb-8 bg-white border-4 border-black p-2 inline-flex gap-2 shadow-[4px_4px_0_0_rgba(0,0,0,1)]">
+        <div className="mb-8 bg-white border-4 border-black p-2 inline-flex flex-wrap gap-2 shadow-[4px_4px_0_0_rgba(0,0,0,1)]">
           {['DAY', 'WEEK', 'MONTH', 'YEAR'].map((range) => (
             <button 
               key={range}
               onClick={() => setTimeRange(range)}
-              className={`px-6 py-2 font-black uppercase border-4 border-transparent transition-all ${
+              className={`px-3 py-2 sm:px-6 font-black uppercase border-4 border-transparent transition-all ${
                 timeRange === range 
                   ? 'bg-black text-white border-black' 
                   : 'hover:border-black text-gray-500 hover:text-black'

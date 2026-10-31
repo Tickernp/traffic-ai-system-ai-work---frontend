@@ -1,5 +1,7 @@
 # Deployment checklist
 
+> **Current target:** run the full application on the university VM. Follow [`../backend/VM_DEPLOY.md`](../backend/VM_DEPLOY.md). The Vercel steps below describe the earlier deployment option and are not part of the current VM setup.
+
 This project has two deployable parts: the Next.js frontend in this repository and the FastAPI service in `../backend`.
 
 In this working copy, `frontend` is the only Git repository and it has no remote configured; `backend` is outside that repository. Before hosting, push the frontend repo to a Git provider and create/push a separate backend repo from the `backend` folder. Keep `.env` files, `venv`, and the large MP4 clips out of Git.
